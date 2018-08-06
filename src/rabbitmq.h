@@ -3,20 +3,45 @@
 
 #include <SimpleAmqpClient/SimpleAmqpClient.h>
 #include <string>
+#include <pthread.h>
+#include <mutex>
+#include <queue>
+
+typedef struct {
+	char data[512];
+	int size;
+}message;
 
 class RabbitmqManager {
 public:
-	RabbitmqManager(std::string mq_host, std::string queue_name);
 	~RabbitmqManager();
+	
+	static RabbitmqManager *getInstance();
 
-	void Recv();
-	void Send();	
-
-	AmqpClient::Channel::ptr_t channel;
-	AmqpClient::Channel::ptr_t channelout;
+	message *Consumer();
+	void Producer(const std::string &msgdata, int dsize);		
 
 private:
+	
+	RabbitmqManager();
+
+	static void *recv(void *parm);
+	static void *send(void *parm);	
+
+	static RabbitmqManager *instance;
+
+	AmqpClient::Channel::ptr_t channelout;
+	AmqpClient::Channel::ptr_t channel;
+
 	std::string mq_host;
-	std::string queue_name_in;	
-	std::string queue_name_out;
+	std::string mq_queue_name;	
+
+	std::queue<message> recvDataQueue;
+	std::queue<message> sendDataQueue;
+	std::mutex recvQMutex;
+	std::mutex sendQMutex;
+	pthread_t recvthread;
+	pthread_t sendthread;	
 };
+
+#endif

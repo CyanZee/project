@@ -2,13 +2,13 @@ CC     = g++
 
 VPATH    = ../../src
 LIB_DIR  = -L ../../lib 
-INCLUDES = -I ../../include 
-CFLAGS   = -Wall -g 
-LIBS     = -lpthread
+INCLUDES = -I ../../include -I ../../src 
+CFLAGS   = -Wall -g -std=c++11 
+LIBS     = -lpthread `pkg-config --libs libSimpleAmqpClient` `pkg-config --libs librabbitmq`
 
 OBJS    = rabbitmq.o
 
-TARGET  = test
+TARGET  = main
 
 all:$(TARGET)
 
