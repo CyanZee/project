@@ -1,0 +1,22 @@
+{
+	"version":"v1_0",
+    "m_mq_host":"localhost",
+    "m_mq_uname":"admin",
+    "m_mq_upwd":"admin",
+    "m_file_storage_path":"/opt",
+    "m_alg_img_dir_name":"yyresult_pic",
+    "m_mq_que_name_in":"hyy_tester",
+    "m_mq_que_name_out":"yymytest",
+    "m_mq_que_name_opt":"yyoperation",
+    "m_mq_que_name_proc_info":"yytaskProcess",
+    "m_mq_que_name_pics_info":"yypicSearch",
+    "m_mq_que_name_feature_info":"yypicFeature",
+    "m_mq_que_name_nvr":"yynvr",
+    "nvr_url_device_states":"http://127.0.0.1:8080/structured-web/api/v01/device_states",
+    "nvr_url_device_healthes":"http://127.0.0.1:8080/structured-web/api/v01/device_healthes",
+    "nvr_url_device_videodownload":"http://127.0.0.1:8080/structured-web/api/v01/device_videodownload",
+    "nvr_url_device_videopath":"http://127.0.0.1:8080/structured-web/api/v01/device_videopath",
+    "m_fThresh":0.3,
+    "min_width":50,
+    "min_height":50
+}
